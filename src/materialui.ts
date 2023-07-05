@@ -11,6 +11,9 @@ import {
   CardHeader,
   CardBody,
   Avatar,
+  Accordion,
+  AccordionHeader,
+  AccordionBody,
 } from '@material-tailwind/react';
 
 export {
@@ -24,4 +27,7 @@ export {
   CardHeader,
   CardBody,
   Avatar,
+  Accordion,
+  AccordionHeader,
+  AccordionBody,
 };

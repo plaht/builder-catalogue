@@ -1,6 +1,9 @@
+'use client';
+
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCubes } from '@fortawesome/free-solid-svg-icons';
+import { useRouter } from 'next/navigation';
 
 import { UserSummary } from '@/types';
 import { Card, CardHeader, CardBody, Avatar, Typography } from '@/materialui';
@@ -11,9 +14,15 @@ export interface UserSummaryProps {
 }
 
 const UserSummary = ({ user }: UserSummaryProps) => {
-  const { username, location, brickCount } = user;
+  const { id, username, location, brickCount } = user;
+  const router = useRouter();
+
   return (
-    <Card shadow={true} className="max-w-[39rem] px-3 m-2">
+    <Card
+      shadow={true}
+      className="max-w-[39rem] px-3 m-2"
+      onClick={() => router.push(`/user/${id}`)}
+    >
       <CardHeader
         floated={false}
         shadow={false}
