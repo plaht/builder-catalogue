@@ -21,17 +21,17 @@ const UserBlockSummary = ({ block }: { block: BlockVariation }) => {
   const { colorMap } = useColorContext();
 
   const blockUrl = getBrickUrl(pieceId, variants[0]?.color);
-  const fallbackUrl = getBrickUrl(pieceId, '1');
+  const fallbackUrl = getBrickUrl(pieceId, '3');
 
-  const [imgSrc, setImgSrc] = useState(blockUrl);
-  const [open, setOpen] = useState(false);
+  const [imgSrc, setImgSrc] = useState<string>(blockUrl);
+  const [open, setOpen] = useState<boolean>(false);
 
   const handleOpen = () => {
     setOpen(!open);
   };
 
   return (
-    <Card shadow={true} className="max-w-[39rem] px-3 m-2">
+    <Card shadow={true} className="max-w-[39rem] px-3 mx-2 my-1">
       <Accordion open={open}>
         <AccordionHeader onClick={() => handleOpen()}>
           <Image
@@ -40,15 +40,18 @@ const UserBlockSummary = ({ block }: { block: BlockVariation }) => {
             width={30}
             style={{ objectFit: 'contain' }}
             onError={() => {
-              console.log(fallbackUrl);
-              setImgSrc(fallbackUrl);
+              if (imgSrc !== fallbackUrl) {
+                setImgSrc(fallbackUrl);
+              } else {
+                setImgSrc('/no-image-placeholder.svg');
+              }
             }}
             alt={`block piece id ${pieceId}`}
           />
           <div className="flex w-full  flex-row gap-0.5">
             <div className="flex ml-4  w-2/3 items-center justify-between">
               <Typography variant="h5" color="blue-gray">
-                {pieceId}
+                {`Piece ID: ${pieceId}`}
               </Typography>
             </div>
             <div className="flex w-1/3 justify-end">
@@ -72,18 +75,29 @@ const UserBlockSummary = ({ block }: { block: BlockVariation }) => {
                 return (
                   <tr key={color}>
                     <td className={classes}>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal"
-                      >
-                        {color} {colorMap[color]}
-                      </Typography>
+                      <div className="flex flex-row">
+                        <div
+                          style={{
+                            marginTop: '0.2rem',
+                            width: '1.5rem',
+                            height: '1rem',
+                            backgroundColor: colorMap[color].toLowerCase(),
+                          }}
+                        />
+
+                        <Typography
+                          variant="small"
+                          color="blue-gray"
+                          className="font-normal ml-3"
+                        >
+                          {colorMap[color]} ({color})
+                        </Typography>
+                      </div>
                     </td>
                     <td className={`${classes}`}>
                       <div className="text-end">
                         <Typography
-                          variant="small"
+                          variant="paragraph"
                           color="blue-gray"
                           className="font-normal"
                         >

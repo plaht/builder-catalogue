@@ -10,8 +10,8 @@ export interface UserListProps {
 
 const UserList = ({ users }: UserListProps) => {
   return (
-    <div className="flex flex-col px-8">
-      <Card className="w-full max-w-[39rem] px-3 m-2 bg-blue-300">
+    <div className="flex basis-1/2 px-8">
+      <Card className="w-full max-w-[39rem] px-3 m-2 bg-blue-200">
         <CardHeader
           floated={false}
           shadow={false}

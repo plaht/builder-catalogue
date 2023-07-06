@@ -2,10 +2,12 @@ import './globals.css';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import { Inter } from 'next/font/google';
+import cx from 'classnames';
 
 import { ThemeProvider } from '@/materialui';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import Content from '@/components/Content';
 
 config.autoAddCss = false;
 
@@ -25,9 +27,9 @@ export default function RootLayout({
     <>
       <html lang="en">
         <ThemeProvider>
-          <body className={inter.className}>
+          <body className={cx('bg-amber-50', inter.className)}>
             <Navbar />
-            <div className="bg-amber-50">{children}</div>
+            <Content>{children}</Content>
             <Footer />
           </body>
         </ThemeProvider>

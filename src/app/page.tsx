@@ -8,7 +8,7 @@ const Home: React.FC = async () => {
   const users = await fetchUsers();
   const sets = await fetchSets();
   return (
-    <div className="flex flex-row justify-center">
+    <div className="flex lg:flex-row justify-center">
       <UserList users={users.Users} />
       <BuildSetList sets={sets.Sets} />
     </div>

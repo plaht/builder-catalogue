@@ -10,8 +10,8 @@ export interface BuildSetListProps {
 
 const BuildSetList = ({ sets }: BuildSetListProps) => {
   return (
-    <div className="flex flex-col px-8">
-      <Card className="w-full max-w-[39rem] px-3 m-2 bg-red-400">
+    <div className="flex basis-1/2 px-8 ">
+      <Card className="w-full max-w-[39rem] px-3 m-2 bg-red-300">
         <CardHeader
           floated={false}
           shadow={false}

@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCubes } from '@fortawesome/free-solid-svg-icons';
 
 import { BuildSetSummary } from '@/types';
-import { Card, CardHeader, CardBody, Avatar, Typography } from '@/materialui';
+import { Card, CardHeader, CardBody, Typography } from '@/materialui';
 import { BUILDSET_AVATAR_URL } from '@/utils/constants';
 
 export interface BuildSetSummaryCardProps {
