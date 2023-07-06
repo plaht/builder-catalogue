@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCubes,
@@ -93,18 +94,20 @@ const UserBuildSetEvaluation = async ({
           )}
           {!hasAllPieces && (
             <>
-              <Button
-                size="sm"
-                color="red"
-                className="flex items-center gap-3 ml-2"
-              >
-                <FontAwesomeIcon
-                  icon={faXmark}
-                  className="h-5 w-5"
-                  strokeWidth={2}
-                />
-                Missing
-              </Button>
+              <Link href={`/user/${user.id}/missing/${setId}`}>
+                <Button
+                  size="sm"
+                  color="red"
+                  className="flex items-center gap-3 ml-2"
+                >
+                  <FontAwesomeIcon
+                    icon={faXmark}
+                    className="h-5 w-5"
+                    strokeWidth={2}
+                  />
+                  Missing
+                </Button>
+              </Link>
               <Button
                 size="sm"
                 disabled

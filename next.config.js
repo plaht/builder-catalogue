@@ -7,6 +7,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'img.bricklink.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
     ],
   },
 };
