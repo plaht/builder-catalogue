@@ -1,6 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCubes } from '@fortawesome/free-solid-svg-icons';
+import Image from 'next/image';
 
 import { BuildSetSummary } from '@/types';
 import { Card, CardHeader, CardBody, Typography } from '@/materialui';
@@ -19,7 +20,9 @@ const BuildSetSummaryCard = ({ buildSet }: BuildSetSummaryCardProps) => {
         shadow={false}
         className="mx-0 flex items-center gap-4 pt-0 pb-2"
       >
-        <img
+        <Image
+          width={800}
+          height={400}
           alt="build set"
           className="h-[6rem] w-full object-cover object-center"
           src={BUILDSET_AVATAR_URL}

@@ -1,11 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCubes,
   faDroplet,
+  faEye,
   faCheck,
-  faXmark,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { fetchSetById } from '@/api';
@@ -35,7 +36,9 @@ const UserBuildSetEvaluation = async ({
         shadow={false}
         className="mx-0 flex items-center gap-4 pt-0 pb-2"
       >
-        <img
+        <Image
+          width={50}
+          height={50}
           alt="build set"
           className="h-[6rem] w-1/4 object-cover object-center"
           src={BUILDSET_AVATAR_URL}
@@ -47,27 +50,29 @@ const UserBuildSetEvaluation = async ({
             </Typography>
           </div>
           <div className="flex flex-row">
-            <div className="flex flex-col w-2/3 justify-start">
+            <div className="flex flex-col w-1/3 justify-start">
               <Typography color="blue-gray">{setNumber}</Typography>
             </div>
 
-            <div className="flex flex-col w-1/3 items-end pr-3">
+            <div className="flex flex-col w-2/3 items-end pr-3">
               <div className="flex flex-row">
                 <Typography variant="h6" color="blue-gray">
                   {' '}
                   {` ${totalPieces}`}{' '}
                   <FontAwesomeIcon
                     icon={faCubes}
-                    color={hasAllPieces ? 'green' : 'red'}
+                    color={hasAllPieces ? 'green' : 'black'}
                   />{' '}
                 </Typography>
+              </div>
+              <div className="flex flex-row items-end">
                 {!hasAllPieces && (
-                  <Typography className="ml-2" variant="h6" color="red">
-                    {' '}
-                    -
+                  <Typography className="" variant="h6" color="red">
+                    {'missing '}
                     {missingPieces?.reduce((sum, piece) => {
                       return sum + piece.quantity;
                     }, 0)}{' '}
+                    <FontAwesomeIcon icon={faCubes} color="red" />
                   </Typography>
                 )}
               </div>
@@ -97,18 +102,18 @@ const UserBuildSetEvaluation = async ({
               <Link href={`/user/${user.id}/missing/${setId}`}>
                 <Button
                   size="sm"
-                  color="red"
+                  color="amber"
                   className="flex items-center gap-3 ml-2"
                 >
                   <FontAwesomeIcon
-                    icon={faXmark}
+                    icon={faEye}
                     className="h-5 w-5"
                     strokeWidth={2}
                   />
-                  Missing
+                  See Details
                 </Button>
               </Link>
-              <Button
+              {/* <Button
                 size="sm"
                 disabled
                 className="flex items-center gap-3 ml-2"
@@ -119,7 +124,7 @@ const UserBuildSetEvaluation = async ({
                   strokeWidth={2}
                 />
                 Sub Color
-              </Button>
+              </Button> */}
             </>
           )}
         </div>

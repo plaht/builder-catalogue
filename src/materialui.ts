@@ -2,10 +2,12 @@
 
 import {
   ThemeProvider,
+  Breadcrumbs,
   Button,
   Navbar,
   Collapse,
   Typography,
+  Textarea,
   IconButton,
   Card,
   CardHeader,
@@ -18,10 +20,12 @@ import {
 
 export {
   ThemeProvider,
+  Breadcrumbs,
   Button,
   Navbar,
   Collapse,
   Typography,
+  Textarea,
   IconButton,
   Card,
   CardHeader,

@@ -25,7 +25,7 @@ const BuildSetDetails = ({
 }) => {
   const { setNumber, name, totalPieces } = buildSet;
 
-  const [open, setOpen] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(true);
 
   const handleOpen = () => {
     setOpen(!open);
@@ -70,7 +70,13 @@ const BuildSetDetails = ({
                   ? 'p-2'
                   : 'p-2 border-b border-blue-gray-50';
 
-                return <BlockRow classes={classes} blockPiece={missingPiece} />;
+                return (
+                  <BlockRow
+                    key={`${missingPiece.part.designID}-${missingPiece.part.material}`}
+                    classes={classes}
+                    blockPiece={missingPiece}
+                  />
+                );
               })}
             </tbody>
           </table>

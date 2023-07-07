@@ -13,7 +13,7 @@ const UserBuildSets = async ({ user }: { user: User }) => {
         Build sets
       </Typography>
       {sets.Sets.map((set: BuildSetSummary) => (
-        <UserBuildSetEvaluation user={user} buildSet={set} />
+        <UserBuildSetEvaluation key={set.id} user={user} buildSet={set} />
       ))}
     </>
   );
