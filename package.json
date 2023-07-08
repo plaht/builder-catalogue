@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "prettier": "prettier  --check \"./**/*.{t,j}s{x,}\" ./*.config.js",
     "prettier:fix": "prettier  --write \"./**/*.{t,j}s{x,}\" ./*.config.js",
     "start": "next start",
     "lint": "next lint",
