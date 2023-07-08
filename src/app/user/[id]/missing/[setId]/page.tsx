@@ -3,9 +3,8 @@ import { faHome } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { fetchUserById, fetchSetById } from '@/api';
-import UserSummaryCard from '@/components/UserSummary';
-import BuildSetDetails from '@/components/BuildSetDetails';
-import CollaboratorList from '@/components/CollaboratorList';
+import { UserSummaryCard, CollaboratorList } from '@/components/User';
+import { BuildSetDetails } from '@/components/BuildSet';
 import { ColorProvider } from '@/providers/ColorProvider';
 import { canUserBuildSet } from '@/utils/users';
 import { BlockPiece } from '@/types';

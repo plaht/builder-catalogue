@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { UserSummary } from '@/types';
-import UserSummaryCard from '@/components/UserSummary';
+import UserSummaryCard from '@/components/User/UserSummaryCard';
 import { Card, CardHeader, CardBody, Typography } from '@/materialui';
 
 export interface UserListProps {

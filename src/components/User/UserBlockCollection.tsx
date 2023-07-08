@@ -4,7 +4,7 @@ import { BlockVariation } from '@/types';
 import UserBlockSummary from './UserBlockSummary';
 import { Typography } from '@/materialui';
 
-const UserBrickCollection = ({ collection }: { collection: BlockVariation[] }) => {
+const UserBlocCollection = ({ collection }: { collection: BlockVariation[] }) => {
   return (
     <>
       <Typography variant="h3" color="blue-gray" className="ml-2">
@@ -17,4 +17,4 @@ const UserBrickCollection = ({ collection }: { collection: BlockVariation[] }) =
   );
 };
 
-export default UserBrickCollection;
+export default UserBlocCollection;

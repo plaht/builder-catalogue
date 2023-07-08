@@ -46,7 +46,7 @@ const user2 = {
       variants: [
         {
           color: '1',
-          count: 6 ,
+          count: 6,
         },
         {
           color: '5',

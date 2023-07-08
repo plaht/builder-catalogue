@@ -3,9 +3,7 @@ import React from 'react';
 import { faHome, faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import UserSummaryCard from '@/components/UserSummary';
-import UserBrickCollection from '@/components/UserBrickCollection';
-import UserBuildSets from '@/components/UserBuildSets';
+import { UserSummaryCard, UserBlockCollection, UserBuildSets } from '@/components/User';
 import { ColorProvider } from '@/providers/ColorProvider';
 import { Breadcrumbs, Button } from '@/materialui';
 import Link from 'next/link';
@@ -27,7 +25,7 @@ const User = async ({ params }: { params: { id: string } }) => {
         <div className="flex flex-row">
           <div className="flex flex-col flex-1 px-6">
             <UserSummaryCard user={{ id, username, location, brickCount }} />
-            <UserBrickCollection collection={collection} />
+            <UserBlockCollection collection={collection} />
           </div>
           <div className="flex flex-col flex-1 px-6 mt-4">
             <Link href={`/user/${id}/custom-build`}>

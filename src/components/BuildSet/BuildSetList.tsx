@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { BuildSetSummary } from '@/types';
-import BuildSetSummaryCard from '@/components/BuildSetSummary';
+import BuildSetSummaryCard from './BuildSetSummaryCard';
 import { Card, CardHeader, CardBody, Typography } from '@/materialui';
 
 export interface BuildSetListProps {

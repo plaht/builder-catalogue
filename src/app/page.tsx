@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { fetchSets, fetchUsers } from '@/api';
-import UserList from '@/components/UserList';
-import BuildSetList from '@/components/BuildSetList';
+import { UserList } from '@/components/User';
+import { BuildSetList } from '@/components/BuildSet';
 
 const Home: React.FC = async () => {
   const users = await fetchUsers();

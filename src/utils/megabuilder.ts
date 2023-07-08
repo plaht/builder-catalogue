@@ -1,6 +1,18 @@
-import { BlockVariation, User } from '@/types';
+import { BlockPiece, BlockVariation, User } from '@/types';
+import { combinations } from './combinations';
+import { buildBlockPiece } from './block';
 
-const flattenCollection = (user: User) => {
+interface UserBlockCount {
+  count: number;
+  username: string;
+  userId: string;
+}
+
+export interface UserBlockCountLookup {
+  [blockColorKey: string]: UserBlockCount[];
+}
+
+const flattenBlockCollection = (user: User): UserBlockCountLookup => {
   const flattened = user.collection.reduce((acc, piece: BlockVariation) => {
     const variants = piece.variants.reduce((colors, variant) => {
       return {
@@ -21,46 +33,34 @@ const flattenCollection = (user: User) => {
   return flattened;
 };
 
-export interface UserCollectionComparison {
-  [key: string]: UserCollectionComparisonPiece[];
-}
-
-interface UserCollectionComparisonPiece {
-  count: number;
-  username: string;
-  userId: string;
-}
-
-const addUserToFlattenedCollection = (
-  flattenedCollection: UserCollectionComparison,
-  user: User
-) => {
-  Object.entries(flattenedCollection).forEach(([key, value]) => {
-    const [pieceId, color] = key.split('-');
-    const found = user.collection.find((piece) => {
+const addUserToFlattenedCollection = (flattenedCollection: UserBlockCountLookup, user: User) => {
+  const { username, id, collection } = user;
+  Object.entries(flattenedCollection).forEach(([coloredPiece, counts]) => {
+    const [pieceId, color] = coloredPiece.split('-');
+    const foundPiece = collection.find((piece) => {
       return piece.pieceId === pieceId;
     });
-    if (!found) {
-      value.unshift({ count: 0, username: user.username, userId: user.id });
+    if (!foundPiece) {
+      counts.unshift({ count: 0, username, userId: id });
       return;
     }
 
-    const foundColor = found.variants.find((variant) => {
+    const foundColor = foundPiece.variants.find((variant) => {
       return variant.color === color;
     });
     if (!foundColor) {
-      value.unshift({ count: 0, username: user.username, userId: user.id });
+      counts.unshift({ count: 0, username, userId: id });
       return;
     }
 
     let inserted = false;
-    for (let idx = 0; idx < value.length; idx++) {
-      const item = value[idx];
+    for (let idx = 0; idx < counts.length; idx++) {
+      const item = counts[idx];
       if (item.count > foundColor.count) {
-        value.splice(idx, 0, {
+        counts.splice(idx, 0, {
           count: foundColor.count,
-          username: user.username,
-          userId: user.id,
+          username,
+          userId: id,
         });
         inserted = true;
         break;
@@ -68,13 +68,89 @@ const addUserToFlattenedCollection = (
     }
 
     if (!inserted) {
-      value.push({
+      counts.push({
         count: foundColor.count,
-        username: user.username,
-        userId: user.id,
+        username,
+        userId: id,
       });
     }
   });
+  return flattenedCollection;
 };
 
-export { flattenCollection, addUserToFlattenedCollection };
+const limitCollectionByUserCounts = (flattenedCollection: UserBlockCountLookup, user: User) => {
+  const { username, id } = user;
+  return Object.entries(flattenedCollection).reduce(
+    (limitedCollection: UserBlockCountLookup, [coloredPiece, orderedCounts]) => {
+      const userIndex = orderedCounts.findIndex((item) => {
+        return item.username === username && item.userId === id;
+      });
+
+      const [foundUser] = orderedCounts.splice(userIndex, 1);
+      const userCount = foundUser.count;
+
+      const limitedCounts = orderedCounts.map((item) => {
+        return item.count <= userCount
+          ? item
+          : {
+              ...item,
+              count: userCount,
+            };
+      });
+
+      limitedCollection[coloredPiece] = limitedCounts;
+      return limitedCollection;
+    },
+    {}
+  );
+};
+
+const findMaximumBlocksShareAmongUsers = (
+  userBlockCounts: UserBlockCountLookup,
+  targetUsernames: string[]
+) => {
+  const collection: BlockPiece[] = [];
+  const totalBlocks = Object.entries(userBlockCounts).reduce(
+    (collectedTotal, [colouredPiece, orderedCounts]) => {
+      const counts = orderedCounts
+        .filter((items) => targetUsernames.includes(items.username))
+        .map((item) => item.count);
+      const minimumCommonCount = Math.min(...counts);
+      collection.push(buildBlockPiece(colouredPiece, minimumCommonCount));
+      return collectedTotal + minimumCommonCount;
+    },
+    0
+  );
+  return { totalBlocks, users: targetUsernames, collection };
+};
+
+const findLargestCommonCollectionInGroup = (
+  limitedCollection: UserBlockCountLookup,
+  numberOfUsers: number
+) => {
+  const users = Object.values(limitedCollection)[0].map((item) => item.username);
+  const userCombinations = combinations(users, numberOfUsers);
+  let largestCollection: {
+    totalBlocks: number;
+    users: string[];
+    collection: BlockPiece[];
+  } = { totalBlocks: 0, users: [], collection: [] };
+  userCombinations.forEach((userCombination) => {
+    const collection = findMaximumBlocksShareAmongUsers(limitedCollection, userCombination);
+    if (collection.totalBlocks > largestCollection.totalBlocks) {
+      largestCollection = collection;
+    }
+  });
+
+  largestCollection.collection = largestCollection.collection.filter(
+    (piece: BlockPiece) => piece.quantity > 0
+  );
+  return largestCollection;
+};
+
+export {
+  flattenBlockCollection,
+  addUserToFlattenedCollection,
+  limitCollectionByUserCounts,
+  findLargestCommonCollectionInGroup,
+};
