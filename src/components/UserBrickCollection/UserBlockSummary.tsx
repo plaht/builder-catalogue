@@ -7,13 +7,7 @@ import { faCubes } from '@fortawesome/free-solid-svg-icons';
 
 import { BlockVariation } from '@/types';
 import { getBrickUrl } from '@/utils/url';
-import {
-  Card,
-  Typography,
-  Accordion,
-  AccordionHeader,
-  AccordionBody,
-} from '@/materialui';
+import { Card, Typography, Accordion, AccordionHeader, AccordionBody } from '@/materialui';
 import { useColorContext } from '@/providers/ColorProvider';
 
 const UserBlockSummary = ({ block }: { block: BlockVariation }) => {
@@ -68,9 +62,7 @@ const UserBlockSummary = ({ block }: { block: BlockVariation }) => {
             <tbody>
               {variants.map(({ color, count }, index) => {
                 const isLast = index === variants.length - 1;
-                const classes = isLast
-                  ? 'p-2'
-                  : 'p-2 border-b border-blue-gray-50';
+                const classes = isLast ? 'p-2' : 'p-2 border-b border-blue-gray-50';
 
                 return (
                   <tr key={color}>
@@ -85,22 +77,14 @@ const UserBlockSummary = ({ block }: { block: BlockVariation }) => {
                           }}
                         />
 
-                        <Typography
-                          variant="small"
-                          color="blue-gray"
-                          className="font-normal ml-3"
-                        >
+                        <Typography variant="small" color="blue-gray" className="font-normal ml-3">
                           {colorMap[color]} ({color})
                         </Typography>
                       </div>
                     </td>
                     <td className={`${classes}`}>
                       <div className="text-end">
-                        <Typography
-                          variant="paragraph"
-                          color="blue-gray"
-                          className="font-normal"
-                        >
+                        <Typography variant="paragraph" color="blue-gray" className="font-normal">
                           {count} <FontAwesomeIcon icon={faCubes} />{' '}
                         </Typography>
                       </div>

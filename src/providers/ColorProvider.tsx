@@ -12,9 +12,7 @@ const DEFAULT_CONTEXT_VALUE = {
   colorMap: undefined,
 };
 
-export const ColorContext = React.createContext<ColorContext>(
-  DEFAULT_CONTEXT_VALUE
-);
+export const ColorContext = React.createContext<ColorContext>(DEFAULT_CONTEXT_VALUE);
 
 export const useColorContext = () => React.useContext(ColorContext);
 
@@ -31,9 +29,5 @@ export const ColorProvider = async ({
     return acc;
   }, {});
 
-  return (
-    <ColorContext.Provider value={{ colorMap }}>
-      {children}
-    </ColorContext.Provider>
-  );
+  return <ColorContext.Provider value={{ colorMap }}>{children}</ColorContext.Provider>;
 };

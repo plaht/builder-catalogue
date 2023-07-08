@@ -8,13 +8,7 @@ import { Typography } from '@/materialui';
 import { useColorContext } from '@/providers/ColorProvider';
 import { getBrickUrl } from '@/utils/url';
 
-const BlockRow = ({
-  blockPiece,
-  classes,
-}: {
-  blockPiece: BlockPiece;
-  classes: string;
-}) => {
+const BlockRow = ({ blockPiece, classes }: { blockPiece: BlockPiece; classes: string }) => {
   const { part, quantity } = blockPiece;
   const { colorMap } = useColorContext();
   const { designID, material } = part;
@@ -43,22 +37,14 @@ const BlockRow = ({
             alt={`block piece id ${designID}`}
           />
 
-          <Typography
-            variant="small"
-            color="blue-gray"
-            className="font-normal ml-3"
-          >
+          <Typography variant="small" color="blue-gray" className="font-normal ml-3">
             {`Design ID: ${designID}  (${colorMap[material.toString()]})`}
           </Typography>
         </div>
       </td>
       <td className={`${classes}`}>
         <div className="text-end">
-          <Typography
-            variant="paragraph"
-            color="blue-gray"
-            className="font-normal"
-          >
+          <Typography variant="paragraph" color="blue-gray" className="font-normal">
             {quantity} <FontAwesomeIcon icon={faCubes} />{' '}
           </Typography>
         </div>

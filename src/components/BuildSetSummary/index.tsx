@@ -15,11 +15,7 @@ const BuildSetSummaryCard = ({ buildSet }: BuildSetSummaryCardProps) => {
   const { id, setNumber, name, totalPieces } = buildSet;
   return (
     <Card shadow={true} className="max-w-[39rem] px-3 m-2">
-      <CardHeader
-        floated={false}
-        shadow={false}
-        className="mx-0 flex items-center gap-4 pt-0 pb-2"
-      >
+      <CardHeader floated={false} shadow={false} className="mx-0 flex items-center gap-4 pt-0 pb-2">
         <Image
           width={800}
           height={400}
@@ -37,10 +33,10 @@ const BuildSetSummaryCard = ({ buildSet }: BuildSetSummaryCardProps) => {
               </Typography>
             </div>
             <div className="flex flex-row">
-              <div className="flex flex-col w-2/3 justify-start">
+              <div className="flex flex-col w-2/3 items-start">
                 <Typography color="blue-gray">{`Set: ${setNumber}`}</Typography>
               </div>
-              <div className="flex flex-col w-1/3 justify-end">
+              <div className="flex flex-col w-1/3 items-end">
                 <Typography variant="h6" color="blue-gray">
                   {' '}
                   {` ${totalPieces}`} <FontAwesomeIcon icon={faCubes} />{' '}

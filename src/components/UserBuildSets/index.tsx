@@ -9,7 +9,7 @@ const UserBuildSets = async ({ user }: { user: User }) => {
   const sets = await fetchSets();
   return (
     <>
-      <Typography variant="h3" color="blue-gray" className="ml-2">
+      <Typography variant="h3" color="blue-gray" className="ml-2 -mb-1">
         Build sets
       </Typography>
       {sets.Sets.map((set: BuildSetSummary) => (

@@ -23,17 +23,8 @@ const UserSummary = ({ user }: UserSummaryProps) => {
       className="max-w-[39rem] px-3 m-2 hover:shadow hover:shadow-lg hover:shadow-grey-800"
       onClick={() => router.push(`/user/${id}`)}
     >
-      <CardHeader
-        floated={false}
-        shadow={false}
-        className="mx-0 flex items-center gap-4 pt-0 pb-8"
-      >
-        <Avatar
-          size="lg"
-          variant="circular"
-          src={USER_AVATAR_URL}
-          alt="user avatar"
-        />
+      <CardHeader floated={false} shadow={false} className="mx-0 flex items-center gap-4 pt-0 pb-8">
+        <Avatar size="lg" variant="circular" src={USER_AVATAR_URL} alt="user avatar" />
         <div className="flex w-full flex-col gap-0.5">
           <div className="flex items-center justify-between">
             <Typography variant="h5" color="blue-gray">

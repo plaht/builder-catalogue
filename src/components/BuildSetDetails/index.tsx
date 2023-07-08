@@ -7,13 +7,7 @@ import { faCubes } from '@fortawesome/free-solid-svg-icons';
 
 import { BuildSet, BlockPiece } from '@/types';
 import { BUILDSET_AVATAR_URL } from '@/utils/constants';
-import {
-  Card,
-  Typography,
-  Accordion,
-  AccordionHeader,
-  AccordionBody,
-} from '@/materialui';
+import { Card, Typography, Accordion, AccordionHeader, AccordionBody } from '@/materialui';
 import BlockRow from './BlockRow';
 
 const BuildSetDetails = ({
@@ -66,9 +60,7 @@ const BuildSetDetails = ({
             <tbody>
               {missingPieces.map((missingPiece, index) => {
                 const isLast = index === missingPieces.length - 1;
-                const classes = isLast
-                  ? 'p-2'
-                  : 'p-2 border-b border-blue-gray-50';
+                const classes = isLast ? 'p-2' : 'p-2 border-b border-blue-gray-50';
 
                 return (
                   <BlockRow

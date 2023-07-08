@@ -16,9 +16,7 @@ const CollaboratorList = async ({
   missingPieces: BlockPiece[];
 }) => {
   const users = await fetchUsers();
-  const otherUsers = users?.Users?.filter(
-    (user: UserSummary) => user.id !== userId
-  );
+  const otherUsers = users?.Users?.filter((user: UserSummary) => user.id !== userId);
   const allOtherUsers = await Promise.all(
     otherUsers.map(async ({ id }: UserSummary) => {
       const user = await fetchUserById(id);
@@ -28,10 +26,7 @@ const CollaboratorList = async ({
 
   const allOtherUsersThatHaveMissingPieces = allOtherUsers
     .map((user: User) => {
-      const { hasAllPieces } = canUserCompleteMissingPieces(
-        user,
-        missingPieces
-      );
+      const { hasAllPieces } = canUserCompleteMissingPieces(user, missingPieces);
       return { ...user, hasAllPieces };
     })
     .filter((user: User & { hasAllPieces: boolean }) => user.hasAllPieces);
@@ -45,12 +40,7 @@ const CollaboratorList = async ({
         These users have the pieces you need to complete this set.
       </Typography>
       {allOtherUsersThatHaveMissingPieces.map((user: User) => (
-        <Collaborator
-          key={user.id}
-          initialUserId={userId}
-          user={user}
-          setId={setId}
-        />
+        <Collaborator key={user.id} initialUserId={userId} user={user} setId={setId} />
       ))}
     </>
   );

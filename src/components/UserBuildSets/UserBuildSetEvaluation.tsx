@@ -2,12 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faCubes,
-  faDroplet,
-  faEye,
-  faCheck,
-} from '@fortawesome/free-solid-svg-icons';
+import { faCubes, faDroplet, faEye, faCheck } from '@fortawesome/free-solid-svg-icons';
 
 import { fetchSetById } from '@/api';
 import { BuildSetSummary, User } from '@/types';
@@ -20,10 +15,7 @@ export interface UserBuildSetEvaluationProps {
   buildSet: BuildSetSummary;
 }
 
-const UserBuildSetEvaluation = async ({
-  user,
-  buildSet,
-}: UserBuildSetEvaluationProps) => {
+const UserBuildSetEvaluation = async ({ user, buildSet }: UserBuildSetEvaluationProps) => {
   const { id: setId, setNumber, name, totalPieces } = buildSet;
   const fullSet = await fetchSetById(setId);
 
@@ -31,11 +23,7 @@ const UserBuildSetEvaluation = async ({
 
   return (
     <Card shadow={true} className="max-w-[39rem] px-3 m-2">
-      <CardHeader
-        floated={false}
-        shadow={false}
-        className="mx-0 flex items-center gap-4 pt-0 pb-2"
-      >
+      <CardHeader floated={false} shadow={false} className="mx-0 flex items-center gap-4 pt-0 pb-2">
         <Image
           width={50}
           height={50}
@@ -59,10 +47,7 @@ const UserBuildSetEvaluation = async ({
                 <Typography variant="h6" color="blue-gray">
                   {' '}
                   {` ${totalPieces}`}{' '}
-                  <FontAwesomeIcon
-                    icon={faCubes}
-                    color={hasAllPieces ? 'green' : 'black'}
-                  />{' '}
+                  <FontAwesomeIcon icon={faCubes} color={hasAllPieces ? 'green' : 'black'} />{' '}
                 </Typography>
               </div>
               <div className="flex flex-row items-end">
@@ -83,33 +68,16 @@ const UserBuildSetEvaluation = async ({
       <CardBody className="mb-2 p-0">
         <div className="flex flex-row justify-end pr-1">
           {hasAllPieces && (
-            <Button
-              size="sm"
-              color="green"
-              disabled
-              className="flex items-center gap-3"
-            >
-              <FontAwesomeIcon
-                icon={faCheck}
-                className="h-5 w-5"
-                strokeWidth={2}
-              />
+            <Button size="sm" color="green" disabled className="flex items-center gap-3">
+              <FontAwesomeIcon icon={faCheck} className="h-5 w-5" strokeWidth={2} />
               Build it
             </Button>
           )}
           {!hasAllPieces && (
             <>
               <Link href={`/user/${user.id}/missing/${setId}`}>
-                <Button
-                  size="sm"
-                  color="amber"
-                  className="flex items-center gap-3 ml-2"
-                >
-                  <FontAwesomeIcon
-                    icon={faEye}
-                    className="h-5 w-5"
-                    strokeWidth={2}
-                  />
+                <Button size="sm" color="amber" className="flex items-center gap-3 ml-2">
+                  <FontAwesomeIcon icon={faEye} className="h-5 w-5" strokeWidth={2} />
                   See Details
                 </Button>
               </Link>

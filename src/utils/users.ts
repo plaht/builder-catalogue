@@ -5,10 +5,7 @@ export interface UserOwnsAllPiecesResult {
   missingPieces?: BlockPiece[];
 }
 
-const userOwnsAllPieces = (
-  user: User,
-  pieces: BlockPiece[]
-): UserOwnsAllPiecesResult => {
+const userOwnsAllPieces = (user: User, pieces: BlockPiece[]): UserOwnsAllPiecesResult => {
   const missingPieces: BlockPiece[] = [];
 
   pieces.forEach((piece) => {
@@ -17,7 +14,6 @@ const userOwnsAllPieces = (
     });
 
     if (!found) {
-      console.log('missing piece', piece);
       missingPieces.push(piece);
       return;
     }
@@ -26,14 +22,12 @@ const userOwnsAllPieces = (
       return variant.color === piece.part.material.toString();
     });
     if (!hasColor) {
-      console.log('missing color', piece);
       missingPieces.push(piece);
       return;
     }
 
     const hasQuantity = hasColor.count >= piece.quantity;
     if (!hasQuantity) {
-      console.log('missing quantity', piece);
       const missingPiece = {
         ...piece,
         quantity: piece.quantity - hasColor.count,
@@ -49,17 +43,11 @@ const userOwnsAllPieces = (
   };
 };
 
-const canUserBuildSet = (
-  user: User,
-  set: BuildSet
-): UserOwnsAllPiecesResult => {
+const canUserBuildSet = (user: User, set: BuildSet): UserOwnsAllPiecesResult => {
   return userOwnsAllPieces(user, set.pieces);
 };
 
-const canUserCompleteMissingPieces = (
-  user: User,
-  missingPieces: BlockPiece[]
-) => {
+const canUserCompleteMissingPieces = (user: User, missingPieces: BlockPiece[]) => {
   return userOwnsAllPieces(user, missingPieces);
 };
 

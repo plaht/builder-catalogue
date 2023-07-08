@@ -18,16 +18,12 @@ export const metadata = {
   description: 'Build a set from your collection',
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <html lang="en">
         <ThemeProvider>
-          <body className={cx('bg-amber-50', inter.className)}>
+          <body suppressHydrationWarning={true} className={cx('bg-amber-50', inter.className)}>
             <Navbar />
             <Content>{children}</Content>
             <Footer />
