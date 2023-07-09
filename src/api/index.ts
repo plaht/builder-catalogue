@@ -2,8 +2,6 @@ import { User } from '@/types';
 
 const API_URL = process.env.API_URL;
 
-console.log('API_URL', API_URL);
-
 const fetchUsers = async () => {
   const res = await fetch(`${API_URL}/users`);
   const users = await res.json();
