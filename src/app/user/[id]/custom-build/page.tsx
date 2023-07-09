@@ -1,13 +1,13 @@
-import { fetchUserById, fetchUsers } from '@/api';
+
 import React from 'react';
 import { faHome, faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 
+import { fetchColours, fetchUserById, fetchUsers } from '@/api';
 import { UserSummaryCard, CollaboratorList } from '@/components/User';
-import { ColorProvider } from '@/providers/ColorProvider';
+import { ColourLibraryProvider } from '@/providers/ColourLibraryProvider';
 import { Breadcrumbs, Button } from '@/materialui';
-
 import {
   addUserToFlattenedCollection,
   findLargestCommonCollectionInGroup,
@@ -22,6 +22,7 @@ const CustomBuild = async ({ params }: { params: { id: string } }) => {
   const { id } = params;
   const user = await fetchUserById(id);
   const users = await fetchUsers();
+  const colours = await fetchColours();
   const { username, location, brickCount, collection } = user;
 
   let flatCollection = flattenBlockCollection(user);
@@ -50,7 +51,7 @@ const CustomBuild = async ({ params }: { params: { id: string } }) => {
         <a href={`/user/${id}`}>{`user: ${username}`}</a>
         <a href={`/user/${id}/custom-build`}>{`custom build`}</a>
       </Breadcrumbs>
-      <ColorProvider apiUrl={process.env.API_URL as string}>
+      <ColourLibraryProvider colours={colours}>
         <div className="flex flex-row">
           <div className="flex flex-col flex-1 px-6">
             <UserSummaryCard user={{ id, username, location, brickCount }} />
@@ -78,7 +79,7 @@ const CustomBuild = async ({ params }: { params: { id: string } }) => {
             </div>
           </div>
         </div>
-      </ColorProvider>
+      </ColourLibraryProvider>
     </>
   );
 };
