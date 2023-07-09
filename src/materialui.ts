@@ -2,6 +2,11 @@
 
 import {
   ThemeProvider,
+  Tab,
+  Tabs,
+  TabsHeader,
+  TabsBody,
+  TabPanel,
   Breadcrumbs,
   Button,
   Navbar,
@@ -23,6 +28,11 @@ import {
 
 export {
   ThemeProvider,
+  Tab,
+  Tabs,
+  TabsHeader,
+  TabsBody,
+  TabPanel,
   Breadcrumbs,
   Button,
   Navbar,
