@@ -24,8 +24,8 @@ const Collaborate = async ({
         <a href="/">
           <FontAwesomeIcon icon={faHome} />
         </a>
-        <a href={`/user/${id}`}>{`user: ${user.username}`}</a>
-        <a href={`/user/${id}/collaborate?collaboratorId=${collaboratorId}&setId=${setId}`}>
+        <a href={`/users/${id}`}>{`user: ${user.username}`}</a>
+        <a href={`/users/${id}/collaborate?collaboratorId=${collaboratorId}&setId=${setId}`}>
           {`collaborate: ${collaborator.username}`}
         </a>
       </Breadcrumbs>
@@ -40,7 +40,7 @@ const Collaborate = async ({
           />
           <div className="w-full flex justify-right py-1.5">
             <div className="flex gap-2">
-              <Link href={`/user/${id}/missing/${setId}`}>
+              <Link href={`/users/${id}/missing/${setId}`}>
                 <Button size="sm" color="red" variant="text" className="rounded-md">
                   Cancel
                 </Button>

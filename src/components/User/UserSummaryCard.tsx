@@ -21,7 +21,7 @@ const UserSummary = ({ user }: UserSummaryProps) => {
     <Card
       shadow={false}
       className="max-w-[39rem] px-3 m-2 hover:shadow-lg hover:shadow-grey-800"
-      onClick={() => router.push(`/user/${id}`)}
+      onClick={() => router.push(`/users/${id}`)}
     >
       <CardHeader floated={false} shadow={false} className="mx-0 flex items-center gap-4 pt-0 pb-8">
         <Avatar size="lg" variant="circular" src={USER_AVATAR_URL} alt="user avatar" />
