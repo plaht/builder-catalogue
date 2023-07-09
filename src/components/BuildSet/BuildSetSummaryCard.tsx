@@ -1,4 +1,7 @@
+'use client';
+
 import React from 'react';
+import { useRouter } from 'next/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCubes } from '@fortawesome/free-solid-svg-icons';
 import Image from 'next/image';
@@ -13,8 +16,14 @@ export interface BuildSetSummaryCardProps {
 
 const BuildSetSummaryCard = ({ buildSet }: BuildSetSummaryCardProps) => {
   const { id, setNumber, name, totalPieces } = buildSet;
+  const router = useRouter();
+
   return (
-    <Card shadow={true} className="max-w-[39rem] px-3 m-2">
+    <Card
+      shadow={true}
+      className="max-w-[39rem] px-3 m-2"
+      onClick={() => router.push(`/sets/${id}`)}
+    >
       <CardHeader floated={false} shadow={false} className="mx-0 flex items-center gap-4 pt-0 pb-2">
         <Image
           width={800}

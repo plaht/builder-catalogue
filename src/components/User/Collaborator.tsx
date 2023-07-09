@@ -31,7 +31,7 @@ const Collaborator = ({ initialUserId, user, setId }: CollaboratorProps) => {
       <CardBody className="mb-2 p-0">
         <div className="flex flex-row justify-end pr-3">
           <div className="flex flex-col w-1/3 items-start mb-2">
-            <Link href={`/user/${initialUserId}/collaborate?collaboratorId=${id}&setId=${setId}`}>
+            <Link href={`/users/${initialUserId}/collaborate?collaboratorId=${id}&setId=${setId}`}>
               <Button size="sm" color="green" className="flex items-center gap-3">
                 <FontAwesomeIcon icon={faHandshake} className="h-5 w-5" strokeWidth={2} />
                 Collaborate

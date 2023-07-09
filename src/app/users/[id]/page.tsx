@@ -19,7 +19,7 @@ const User = async ({ params }: { params: { id: string } }) => {
         <a href="/">
           <FontAwesomeIcon icon={faHome} />
         </a>
-        <a href={`/user/${id}`}>{`user: ${username}`}</a>
+        <a href={`/users/${id}`}>{`user: ${username}`}</a>
       </Breadcrumbs>
       <div className="flex flex-row">
         <div className="flex flex-col flex-1 px-6">
@@ -27,7 +27,7 @@ const User = async ({ params }: { params: { id: string } }) => {
           <UserBlockCollection collection={collection} colourLibrary={colours} />
         </div>
         <div className="flex hidden lg:block flex-col flex-1 px-6 mt-4">
-          <Link href={`/user/${id}/custom-build`}>
+          <Link href={`/users/${id}/custom-build`}>
             <Button size="sm" color="teal" className="flex items-center gap-3 ml-2 mb-28">
               <FontAwesomeIcon icon={faCirclePlus} className="h-5 w-5" strokeWidth={2} />
               Custom Build
@@ -38,7 +38,7 @@ const User = async ({ params }: { params: { id: string } }) => {
       </div>
       <div className="flex flex-row block lg:hidden">
         <div className="flex flex-col flex-1 px-6 mt-4">
-          <Link href={`/user/${id}/custom-build`}>
+          <Link href={`/users/${id}/custom-build`}>
             <Button size="sm" color="teal" className="flex items-center gap-3 ml-2 mb-28">
               <FontAwesomeIcon icon={faCirclePlus} className="h-5 w-5" strokeWidth={2} />
               Custom Build

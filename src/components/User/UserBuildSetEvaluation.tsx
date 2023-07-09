@@ -75,7 +75,7 @@ const UserBuildSetEvaluation = async ({ user, buildSet }: UserBuildSetEvaluation
           )}
           {!hasAllPieces && (
             <>
-              <Link href={`/user/${user.id}/missing/${setId}`}>
+              <Link href={`/users/${user.id}/missing/${setId}`}>
                 <Button size="sm" color="amber" className="flex items-center gap-3 ml-2">
                   <FontAwesomeIcon icon={faEye} className="h-5 w-5" strokeWidth={2} />
                   See Details

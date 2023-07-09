@@ -1,28 +1,28 @@
 import React from 'react';
 
-import { fetchSets } from '@/api';
-import { BuildSetList } from '@/components/BuildSet';
+import { fetchUsers } from '@/api';
+import { UserList } from '@/components/User';
 import { Breadcrumbs } from '@/materialui';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const Sets: React.FC = async () => {
-  const sets = await fetchSets();
+const Users: React.FC = async () => {
+  const users = await fetchUsers();
   return (
     <>
       <Breadcrumbs className="ml-2 mt-2">
         <a href="/">
           <FontAwesomeIcon icon={faHome} />
         </a>
-        <a href={`/sets`}>{`sets`}</a>
+        <a href={`/user`}>{`users`}</a>
       </Breadcrumbs>
       <div className="flex lg:flex-row justify-center">
         <div className="flex flex-col flex-1 p-6">
-          <BuildSetList sets={sets.Sets} />
+          <UserList users={users.Users} />
         </div>
       </div>
     </>
   );
 };
 
-export default Sets;
+export default Users;

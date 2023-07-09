@@ -46,8 +46,8 @@ const CustomBuild = async ({ params }: { params: { id: string } }) => {
         <a href="/">
           <FontAwesomeIcon icon={faHome} />
         </a>
-        <a href={`/user/${id}`}>{`user: ${username}`}</a>
-        <a href={`/user/${id}/custom-build`}>{`custom build`}</a>
+        <a href={`/users/${id}`}>{`user: ${username}`}</a>
+        <a href={`/users/${id}/custom-build`}>{`custom build`}</a>
       </Breadcrumbs>
       <div className="flex flex-row">
         <div className="flex flex-col flex-1 px-6">
@@ -56,7 +56,7 @@ const CustomBuild = async ({ params }: { params: { id: string } }) => {
             <div className="w-48">
               <CoverageSelect />
             </div>
-            <Link href={`/user/${id}/custom-build`}>
+            <Link href={`/users/${id}/custom-build`}>
               <Button size="sm" color="teal" disabled className="flex items-center gap-3 mt-4">
                 <FontAwesomeIcon icon={faCirclePlus} className="h-5 w-5" strokeWidth={2} />
                 Generate Build
@@ -73,7 +73,7 @@ const CustomBuild = async ({ params }: { params: { id: string } }) => {
           <div className="w-48">
             <CoverageSelect />
           </div>
-          <Link href={`/user/${id}/custom-build`}>
+          <Link href={`/users/${id}/custom-build`}>
             <Button size="sm" color="teal" disabled className="flex items-center gap-3 mt-4">
               <FontAwesomeIcon icon={faCirclePlus} className="h-5 w-5" strokeWidth={2} />
               Generate Build

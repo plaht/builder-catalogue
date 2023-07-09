@@ -17,7 +17,7 @@ const BuildSetDetails = ({
 }: {
   colourLibrary: ColourLibrary;
   buildSet: BuildSet;
-  missingPieces: BlockPiece[];
+  missingPieces?: BlockPiece[];
 }) => {
   const { setNumber, name, totalPieces } = buildSet;
 
@@ -26,6 +26,8 @@ const BuildSetDetails = ({
   const handleOpen = () => {
     setOpen(!open);
   };
+
+  const piecesToList = missingPieces ? missingPieces : buildSet.pieces;
 
   return (
     <Card shadow={true} className="max-w-[39rem] px-3 mx-2 my-1">
@@ -66,8 +68,8 @@ const BuildSetDetails = ({
         <AccordionBody>
           <table className="w-full min-w-max table-auto text-left">
             <tbody>
-              {missingPieces.map((missingPiece, index) => {
-                const isLast = index === missingPieces.length - 1;
+              {piecesToList.map((missingPiece, index) => {
+                const isLast = index === piecesToList.length - 1;
                 const classes = isLast ? 'p-2' : 'p-2 border-b border-blue-gray-50';
 
                 return (

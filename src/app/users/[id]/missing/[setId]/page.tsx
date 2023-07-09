@@ -23,8 +23,8 @@ const UserMissingBuildSet = async ({ params }: { params: { id: string; setId: st
         <a href="/">
           <FontAwesomeIcon icon={faHome} />
         </a>
-        <a href={`/user/${id}`}>{`user: ${user.username}`}</a>
-        <a href={`/user/${id}/missing/${setId}`}>{`set: ${set.name}`}</a>
+        <a href={`/users/${id}`}>{`user: ${user.username}`}</a>
+        <a href={`/users/${id}/missing/${setId}`}>{`set: ${set.name}`}</a>
       </Breadcrumbs>
       <div className="flex flex-row">
         <div className="flex flex-col flex-1 p-6">
