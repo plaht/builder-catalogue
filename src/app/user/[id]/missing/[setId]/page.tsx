@@ -35,6 +35,15 @@ const UserMissingBuildSet = async ({ params }: { params: { id: string; setId: st
             setId={setId}
           />
         </div>
+        <div className="flex hidden lg:block flex-col flex-1 p-6">
+          <BuildSetDetails
+            buildSet={set}
+            missingPieces={missingPieces as BlockPiece[]}
+            colourLibrary={colours}
+          />
+        </div>
+      </div>
+      <div className="flex flex-row block lg:hidden">
         <div className="flex flex-col flex-1 p-6">
           <BuildSetDetails
             buildSet={set}
