@@ -16,11 +16,10 @@ const Home: React.FC = async () => {
         <div className="flex hidden lg:block flex-col flex-1 p-6">
           <BuildSetList sets={sets.Sets} />
         </div>
-
       </div>
       <div className="flex block lg:hidden flex-row justify-center">
-      <div className="flex flex-col flex-1 p-6">
-        <BuildSetList sets={sets.Sets} />
+        <div className="flex flex-col flex-1 p-6">
+          <BuildSetList sets={sets.Sets} />
         </div>
       </div>
     </>

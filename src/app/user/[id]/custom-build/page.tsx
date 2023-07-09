@@ -68,7 +68,6 @@ const CustomBuild = async ({ params }: { params: { id: string } }) => {
             missingPieces={proposedSet.collection as BlockPiece[]}
             setId={''}
           />
-          
         </div>
         <div className="flex hidden lg:block flex-col flex-1 px-6 mt-4">
           <div className="w-48">
