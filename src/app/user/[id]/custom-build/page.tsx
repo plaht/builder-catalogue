@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { faHome, faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -6,7 +5,6 @@ import Link from 'next/link';
 
 import { fetchColours, fetchUserById, fetchUsers } from '@/api';
 import { UserSummaryCard, CollaboratorList } from '@/components/User';
-import { ColourLibraryProvider } from '@/providers/ColourLibraryProvider';
 import { Breadcrumbs, Button } from '@/materialui';
 import {
   addUserToFlattenedCollection,
@@ -51,35 +49,34 @@ const CustomBuild = async ({ params }: { params: { id: string } }) => {
         <a href={`/user/${id}`}>{`user: ${username}`}</a>
         <a href={`/user/${id}/custom-build`}>{`custom build`}</a>
       </Breadcrumbs>
-      <ColourLibraryProvider colours={colours}>
-        <div className="flex flex-row">
-          <div className="flex flex-col flex-1 px-6">
-            <UserSummaryCard user={{ id, username, location, brickCount }} />
-            <CollaboratorList
-              userId={id}
+      <div className="flex flex-row">
+        <div className="flex flex-col flex-1 px-6">
+          <UserSummaryCard user={{ id, username, location, brickCount }} />
+          <CollaboratorList
+            userId={id}
+            missingPieces={proposedSet.collection as BlockPiece[]}
+            setId={''}
+          />
+        </div>
+        <div className="flex flex-col flex-1 px-6 mt-4">
+          <div className="w-48">
+            <CoverageSelect />
+          </div>
+          <Link href={`/user/${id}/custom-build`}>
+            <Button size="sm" color="teal" disabled className="flex items-center gap-3 mt-4">
+              <FontAwesomeIcon icon={faCirclePlus} className="h-5 w-5" strokeWidth={2} />
+              Generate Build
+            </Button>
+          </Link>
+          <div className="flex flex-col flex-1 p-6">
+            <BuildSetDetails
+              buildSet={{ totalPieces: proposedSet.totalBlocks } as BuildSet}
               missingPieces={proposedSet.collection as BlockPiece[]}
-              setId={''}
+              colourLibrary={colours}
             />
           </div>
-          <div className="flex flex-col flex-1 px-6 mt-4">
-            <div className="w-48">
-              <CoverageSelect />
-            </div>
-            <Link href={`/user/${id}/custom-build`}>
-              <Button size="sm" color="teal" disabled className="flex items-center gap-3 mt-4">
-                <FontAwesomeIcon icon={faCirclePlus} className="h-5 w-5" strokeWidth={2} />
-                Generate Build
-              </Button>
-            </Link>
-            <div className="flex flex-col flex-1 p-6">
-              <BuildSetDetails
-                buildSet={{ totalPieces: proposedSet.totalBlocks } as BuildSet}
-                missingPieces={proposedSet.collection as BlockPiece[]}
-              />
-            </div>
-          </div>
         </div>
-      </ColourLibraryProvider>
+      </div>
     </>
   );
 };

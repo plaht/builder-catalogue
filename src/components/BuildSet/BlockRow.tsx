@@ -5,14 +5,22 @@ import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCubes } from '@fortawesome/free-solid-svg-icons';
 
-import { BlockPiece } from '@/types';
+import { BlockPiece, ColourLibrary } from '@/types';
 import { Typography } from '@/materialui';
-import { useColorContext } from '@/providers/ColourLibraryProvider';
 import { getBrickUrl } from '@/utils/url';
+import { buildColourMap } from '@/utils/colours';
 
-const BlockRow = ({ blockPiece, classes }: { blockPiece: BlockPiece; classes: string }) => {
+const BlockRow = ({
+  colours,
+  blockPiece,
+  classes,
+}: {
+  colours: ColourLibrary;
+  blockPiece: BlockPiece;
+  classes: string;
+}) => {
   const { part, quantity } = blockPiece;
-  const { colourMap } = useColorContext();
+  const colourMap = buildColourMap(colours);
   const { designID, material } = part;
 
   const blockUrl = getBrickUrl(designID, material.toString());

@@ -5,14 +5,20 @@ import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCubes } from '@fortawesome/free-solid-svg-icons';
 
-import { BlockVariation } from '@/types';
+import { BlockVariation, ColourLibrary } from '@/types';
 import { getBrickUrl } from '@/utils/url';
+import { buildColourMap } from '@/utils/colours';
 import { Card, Typography, Accordion, AccordionHeader, AccordionBody } from '@/materialui';
-import { useColorContext } from '@/providers/ColourLibraryProvider';
 
-const UserBlockSummary = ({ block }: { block: BlockVariation }) => {
+const UserBlockSummary = ({
+  block,
+  colourLibrary,
+}: {
+  block: BlockVariation;
+  colourLibrary: ColourLibrary;
+}) => {
   const { pieceId, variants } = block;
-  const { colourMap } = useColorContext();
+  const colourMap = buildColourMap(colourLibrary);
 
   const blockUrl = getBrickUrl(pieceId, variants[0]?.color);
   const fallbackUrl = getBrickUrl(pieceId, '3');

@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCubes } from '@fortawesome/free-solid-svg-icons';
 
-import { BuildSet, BlockPiece } from '@/types';
+import { BuildSet, BlockPiece, ColourLibrary } from '@/types';
 import { BUILDSET_AVATAR_URL } from '@/utils/constants';
 import { Card, Typography, Accordion, AccordionHeader, AccordionBody, Input } from '@/materialui';
 import BlockRow from './BlockRow';
@@ -13,7 +13,9 @@ import BlockRow from './BlockRow';
 const BuildSetDetails = ({
   buildSet,
   missingPieces,
+  colourLibrary,
 }: {
+  colourLibrary: ColourLibrary;
   buildSet: BuildSet;
   missingPieces: BlockPiece[];
 }) => {
@@ -72,6 +74,7 @@ const BuildSetDetails = ({
                   <BlockRow
                     key={`${missingPiece.part.designID}-${missingPiece.part.material}`}
                     classes={classes}
+                    colours={colourLibrary}
                     blockPiece={missingPiece}
                   />
                 );
