@@ -81,8 +81,9 @@ const CustomBuild = async ({ params }: { params: { id: string } }) => {
           </Link>
           <div className="flex flex-col flex-1 p-6">
             <BuildSetDetails
-              buildSet={{ totalPieces: proposedSet.totalBlocks } as BuildSet}
-              missingPieces={proposedSet.collection as BlockPiece[]}
+              buildSet={
+                { totalPieces: proposedSet.totalBlocks, pieces: proposedSet.collection } as BuildSet
+              }
               colourLibrary={colours}
             />
           </div>
@@ -92,8 +93,9 @@ const CustomBuild = async ({ params }: { params: { id: string } }) => {
         <div className="flex flex-col flex-1 px-6 mt-4">
           <div className="flex flex-col flex-1 p-6">
             <BuildSetDetails
-              buildSet={{ totalPieces: proposedSet.totalBlocks } as BuildSet}
-              missingPieces={proposedSet.collection as BlockPiece[]}
+              buildSet={
+                { totalPieces: proposedSet.totalBlocks, pieces: proposedSet.collection } as BuildSet
+              }
               colourLibrary={colours}
             />
           </div>

@@ -14,10 +14,12 @@ const BlockRow = ({
   colours,
   blockPiece,
   classes,
+  missing = false,
 }: {
   colours: ColourLibrary;
   blockPiece: BlockPiece;
   classes: string;
+  missing: boolean;
 }) => {
   const { part, quantity } = blockPiece;
   const colourMap = buildColourMap(colours);
@@ -54,8 +56,12 @@ const BlockRow = ({
       </td>
       <td className={`${classes}`}>
         <div className="text-end">
-          <Typography variant="paragraph" color="blue-gray" className="font-normal">
-            {quantity} <FontAwesomeIcon icon={faCubes} />{' '}
+          <Typography
+            variant="paragraph"
+            color={missing ? 'red' : 'blue-gray'}
+            className="font-normal"
+          >
+            {quantity} <FontAwesomeIcon color={missing ? 'red' : 'black'} icon={faCubes} />{' '}
           </Typography>
         </div>
       </td>
