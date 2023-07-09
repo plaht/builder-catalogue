@@ -10,7 +10,15 @@ import { Typography } from '@/materialui';
 import { getBrickUrl } from '@/utils/url';
 import { buildColourMap } from '@/utils/colours';
 
-const BlockRow = ({ colours, blockPiece, classes }: { colours: ColourLibrary, blockPiece: BlockPiece; classes: string }) => {
+const BlockRow = ({
+  colours,
+  blockPiece,
+  classes,
+}: {
+  colours: ColourLibrary;
+  blockPiece: BlockPiece;
+  classes: string;
+}) => {
   const { part, quantity } = blockPiece;
   const colourMap = buildColourMap(colours);
   const { designID, material } = part;

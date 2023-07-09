@@ -26,19 +26,23 @@ const UserMissingBuildSet = async ({ params }: { params: { id: string; setId: st
         <a href={`/user/${id}`}>{`user: ${user.username}`}</a>
         <a href={`/user/${id}/missing/${setId}`}>{`set: ${set.name}`}</a>
       </Breadcrumbs>
-        <div className="flex flex-row">
-          <div className="flex flex-col flex-1 p-6">
-            <UserSummaryCard user={{ id, username, location, brickCount }} />
-            <CollaboratorList
-              userId={id}
-              missingPieces={missingPieces as BlockPiece[]}
-              setId={setId}
-            />
-          </div>
-          <div className="flex flex-col flex-1 p-6">
-            <BuildSetDetails buildSet={set} missingPieces={missingPieces as BlockPiece[]} colourLibrary={colours} />
-          </div>
+      <div className="flex flex-row">
+        <div className="flex flex-col flex-1 p-6">
+          <UserSummaryCard user={{ id, username, location, brickCount }} />
+          <CollaboratorList
+            userId={id}
+            missingPieces={missingPieces as BlockPiece[]}
+            setId={setId}
+          />
         </div>
+        <div className="flex flex-col flex-1 p-6">
+          <BuildSetDetails
+            buildSet={set}
+            missingPieces={missingPieces as BlockPiece[]}
+            colourLibrary={colours}
+          />
+        </div>
+      </div>
     </>
   );
 };

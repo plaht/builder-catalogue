@@ -10,7 +10,13 @@ import { getBrickUrl } from '@/utils/url';
 import { buildColourMap } from '@/utils/colours';
 import { Card, Typography, Accordion, AccordionHeader, AccordionBody } from '@/materialui';
 
-const UserBlockSummary = ({ block, colourLibrary }: { block: BlockVariation, colourLibrary: ColourLibrary }) => {
+const UserBlockSummary = ({
+  block,
+  colourLibrary,
+}: {
+  block: BlockVariation;
+  colourLibrary: ColourLibrary;
+}) => {
   const { pieceId, variants } = block;
   const colourMap = buildColourMap(colourLibrary);
 
