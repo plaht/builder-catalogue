@@ -52,13 +52,24 @@ const CustomBuild = async ({ params }: { params: { id: string } }) => {
       <div className="flex flex-row">
         <div className="flex flex-col flex-1 px-6">
           <UserSummaryCard user={{ id, username, location, brickCount }} />
+          <div className="block lg:hidden">
+            <div className="w-48">
+              <CoverageSelect />
+            </div>
+            <Link href={`/user/${id}/custom-build`}>
+              <Button size="sm" color="teal" disabled className="flex items-center gap-3 mt-4">
+                <FontAwesomeIcon icon={faCirclePlus} className="h-5 w-5" strokeWidth={2} />
+                Generate Build
+              </Button>
+            </Link>
+          </div>
           <CollaboratorList
             userId={id}
             missingPieces={proposedSet.collection as BlockPiece[]}
             setId={''}
           />
         </div>
-        <div className="flex flex-col flex-1 px-6 mt-4">
+        <div className="flex hidden lg:block flex-col flex-1 px-6 mt-4">
           <div className="w-48">
             <CoverageSelect />
           </div>
@@ -68,6 +79,17 @@ const CustomBuild = async ({ params }: { params: { id: string } }) => {
               Generate Build
             </Button>
           </Link>
+          <div className="flex flex-col flex-1 p-6">
+            <BuildSetDetails
+              buildSet={{ totalPieces: proposedSet.totalBlocks } as BuildSet}
+              missingPieces={proposedSet.collection as BlockPiece[]}
+              colourLibrary={colours}
+            />
+          </div>
+        </div>
+      </div>
+      <div className="flex flex-row block lg:hidden">
+        <div className="flex flex-col flex-1 px-6 mt-4">
           <div className="flex flex-col flex-1 p-6">
             <BuildSetDetails
               buildSet={{ totalPieces: proposedSet.totalBlocks } as BuildSet}
