@@ -2,10 +2,10 @@ import React from 'react';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { fetchUserById, fetchSetById } from '@/api';
+import { fetchUserById, fetchSetById, fetchColours } from '@/api';
 import { UserSummaryCard, CollaboratorList } from '@/components/User';
 import { BuildSetDetails } from '@/components/BuildSet';
-import { ColorProvider } from '@/providers/ColorProvider';
+import { ColourLibraryProvider } from '@/providers/ColourLibraryProvider';
 import { canUserBuildSet } from '@/utils/users';
 import { BlockPiece } from '@/types';
 import { Breadcrumbs } from '@/materialui';
@@ -14,6 +14,7 @@ const UserMissingBuildSet = async ({ params }: { params: { id: string; setId: st
   const { id, setId } = params;
   const user = await fetchUserById(id);
   const set = await fetchSetById(setId);
+  const colours = await fetchColours();
   const { username, location, brickCount } = user;
   const { missingPieces } = canUserBuildSet(user, set);
 
@@ -26,7 +27,7 @@ const UserMissingBuildSet = async ({ params }: { params: { id: string; setId: st
         <a href={`/user/${id}`}>{`user: ${user.username}`}</a>
         <a href={`/user/${id}/missing/${setId}`}>{`set: ${set.name}`}</a>
       </Breadcrumbs>
-      <ColorProvider apiUrl={process.env.API_URL as string}>
+      <ColourLibraryProvider colours={colours}>
         <div className="flex flex-row">
           <div className="flex flex-col flex-1 p-6">
             <UserSummaryCard user={{ id, username, location, brickCount }} />
@@ -40,7 +41,7 @@ const UserMissingBuildSet = async ({ params }: { params: { id: string; setId: st
             <BuildSetDetails buildSet={set} missingPieces={missingPieces as BlockPiece[]} />
           </div>
         </div>
-      </ColorProvider>
+      </ColourLibraryProvider>
     </>
   );
 };

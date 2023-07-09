@@ -16,6 +16,16 @@ export interface BuildSetSummary {
   totalPieces: number;
 }
 
+export interface ColourLibrary {
+  colours: ColourCode[];
+  disclaimer: string;
+}
+
+export interface ColourCode {
+  name: string;
+  code: number;
+}
+
 export interface BuildSet extends BuildSetSummary {
   pieces: BlockPiece[];
 }

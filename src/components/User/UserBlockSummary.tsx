@@ -8,11 +8,11 @@ import { faCubes } from '@fortawesome/free-solid-svg-icons';
 import { BlockVariation } from '@/types';
 import { getBrickUrl } from '@/utils/url';
 import { Card, Typography, Accordion, AccordionHeader, AccordionBody } from '@/materialui';
-import { useColorContext } from '@/providers/ColorProvider';
+import { useColorContext } from '@/providers/ColourLibraryProvider';
 
 const UserBlockSummary = ({ block }: { block: BlockVariation }) => {
   const { pieceId, variants } = block;
-  const { colorMap } = useColorContext();
+  const { colourMap } = useColorContext();
 
   const blockUrl = getBrickUrl(pieceId, variants[0]?.color);
   const fallbackUrl = getBrickUrl(pieceId, '3');
@@ -73,12 +73,12 @@ const UserBlockSummary = ({ block }: { block: BlockVariation }) => {
                             marginTop: '0.2rem',
                             width: '1.5rem',
                             height: '1rem',
-                            backgroundColor: colorMap[color].toLowerCase(),
+                            backgroundColor: colourMap[color].toLowerCase(),
                           }}
                         />
 
                         <Typography variant="small" color="blue-gray" className="font-normal ml-3">
-                          {colorMap[color]} ({color})
+                          {colourMap[color]} ({color})
                         </Typography>
                       </div>
                     </td>

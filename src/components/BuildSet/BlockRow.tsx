@@ -7,12 +7,12 @@ import { faCubes } from '@fortawesome/free-solid-svg-icons';
 
 import { BlockPiece } from '@/types';
 import { Typography } from '@/materialui';
-import { useColorContext } from '@/providers/ColorProvider';
+import { useColorContext } from '@/providers/ColourLibraryProvider';
 import { getBrickUrl } from '@/utils/url';
 
 const BlockRow = ({ blockPiece, classes }: { blockPiece: BlockPiece; classes: string }) => {
   const { part, quantity } = blockPiece;
-  const { colorMap } = useColorContext();
+  const { colourMap } = useColorContext();
   const { designID, material } = part;
 
   const blockUrl = getBrickUrl(designID, material.toString());
@@ -40,7 +40,7 @@ const BlockRow = ({ blockPiece, classes }: { blockPiece: BlockPiece; classes: st
           />
 
           <Typography variant="small" color="blue-gray" className="font-normal ml-3">
-            {`Design ID: ${designID}  (${colorMap[material.toString()]})`}
+            {`Design ID: ${designID}  (${colourMap[material.toString()]})`}
           </Typography>
         </div>
       </td>
