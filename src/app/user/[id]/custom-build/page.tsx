@@ -6,7 +6,6 @@ import Link from 'next/link';
 
 import { fetchColours, fetchUserById, fetchUsers } from '@/api';
 import { UserSummaryCard, CollaboratorList } from '@/components/User';
-import { ColourLibraryProvider } from '@/providers/ColourLibraryProvider';
 import { Breadcrumbs, Button } from '@/materialui';
 import {
   addUserToFlattenedCollection,
@@ -51,7 +50,6 @@ const CustomBuild = async ({ params }: { params: { id: string } }) => {
         <a href={`/user/${id}`}>{`user: ${username}`}</a>
         <a href={`/user/${id}/custom-build`}>{`custom build`}</a>
       </Breadcrumbs>
-      <ColourLibraryProvider colours={colours}>
         <div className="flex flex-row">
           <div className="flex flex-col flex-1 px-6">
             <UserSummaryCard user={{ id, username, location, brickCount }} />
@@ -75,11 +73,11 @@ const CustomBuild = async ({ params }: { params: { id: string } }) => {
               <BuildSetDetails
                 buildSet={{ totalPieces: proposedSet.totalBlocks } as BuildSet}
                 missingPieces={proposedSet.collection as BlockPiece[]}
+                colourLibrary={colours}
               />
             </div>
           </div>
         </div>
-      </ColourLibraryProvider>
     </>
   );
 };
