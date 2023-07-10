@@ -1,4 +1,8 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Builder Catalogue
+
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app)
+
+It utilizes [Material Tailwind](https://www.material-tailwind.com) and tries to pair users block collections with buildsets using the some of the latest features of nextjs.
 
 ## Getting Started
 
@@ -14,21 +18,22 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Features
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+  - Users have an overview of their brick collection and can see what buildsets they can complete, what sets they can not and how many bricks they are missing
 
-## Learn More
+  - Users can see details about what bricks they are missing, and who they might collaborate with to build a set
 
-To learn more about Next.js, take a look at the following resources:
+  - Users can build a custom set and select a coverage amount (default 50%). This coverage amount will tell the largest set of bricks a user can create a set with so that the coverage amount can build the custom set.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+  - User can write a message collaborate with another user
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Todo
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- [ ] Add translation support using react-i18next
+- [ ] Handle various errors - api errors, Add error boundary. Better error pages.
+- [ ] Improve loading experience - Suspense animations / skeletons
+- [ ] Improve Client side rehydration - useSWR for better fetching
+- [ ] Refactor folder structure
+- [ ] Integation tests - testing the UI. Playwright
+- [ ] Color substitution suggestion if user can not complete a set as specified with another unused color
