@@ -30,10 +30,10 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Todo
 
-- [ ] Add translation support using react-i18next
-- [ ] Handle various errors - api errors, Add error boundary. Better error pages.
+- [ ] Add translation support using `react-i18next`
+- [ ] Handle various errors - api errors, Add error boundary. Improved Nextjs error pages.
 - [ ] Improve loading experience - Suspense animations / skeletons
-- [ ] Improve Client side rehydration - useSWR for better fetching
+- [ ] Improve Client side rehydration - `swr` for improved clientside fetching
 - [ ] Refactor folder structure
-- [ ] Integation tests - testing the UI. Playwright
+- [ ] Integartion tests - testing the UI using `playwright.dev`
 - [ ] Color substitution suggestion if user can not complete a set as specified with another unused color

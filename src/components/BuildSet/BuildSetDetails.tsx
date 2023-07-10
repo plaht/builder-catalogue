@@ -10,7 +10,8 @@ import { BUILDSET_AVATAR_URL } from '@/utils/constants';
 import { Card, CardHeader, CardBody, Typography, Input } from '@/materialui';
 import BlockRowList from './BlockRowList';
 import { Tab, TabPanel, Tabs, TabsBody, TabsHeader } from '@material-tailwind/react';
-import { data } from 'autoprefixer';
+import { totalMissingPiecesReducer as reducer } from '@/utils/block';
+
 
 const BuildSetDetails = ({
   buildSet,
@@ -68,9 +69,7 @@ const BuildSetDetails = ({
                 {hasMissingPieces && (
                   <Typography className="" variant="h6" color="red">
                     {'missing '}
-                    {missingPieces?.reduce((sum, piece) => {
-                      return sum + piece.quantity;
-                    }, 0)}{' '}
+                    {missingPieces?.reduce(reducer, 0)}{' '}
                     <FontAwesomeIcon icon={faCubes} color="red" />
                   </Typography>
                 )}
