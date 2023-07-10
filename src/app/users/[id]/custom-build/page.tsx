@@ -39,7 +39,7 @@ const CustomBuild = async ({
     })
   );
 
-  const minimumUsers = Math.floor((users.length * parseInt(coverage)) / 100);
+  const minimumUsers = Math.floor(((users.length -1) * parseInt(coverage)) / 100);
 
   let flatCollection = flattenBlockCollection(user);
   users.forEach((user: User) => {
