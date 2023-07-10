@@ -15,8 +15,10 @@ const Collaborate = async ({
 }) => {
   const { id } = params;
   const { collaboratorId, setId } = searchParams;
-  const user = await fetchUserById(id);
-  const collaborator = await fetchUserById(collaboratorId);
+  const [user, collaborator] = await Promise.all([
+    fetchUserById(id),
+    fetchUserById(collaboratorId),
+  ]);
 
   return (
     <>
@@ -40,7 +42,7 @@ const Collaborate = async ({
           />
           <div className="w-full flex justify-right py-1.5">
             <div className="flex gap-2">
-              <Link href={`/users/${id}/missing/${setId}`}>
+              <Link href={`/users/${id}/${setId ? `missing/${setId}` : 'custom-build'}`}>
                 <Button size="sm" color="red" variant="text" className="rounded-md">
                   Cancel
                 </Button>

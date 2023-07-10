@@ -3,9 +3,9 @@
 import React from 'react';
 import { Select, Option } from '@/materialui';
 
-const CoverageSelect = () => {
+const CoverageSelect = ({ value = '50' }: { value?: string }) => {
   return (
-    <Select className="bg-white" label="Select coverage" disabled value="50%">
+    <Select className="bg-white" label="Select coverage" disabled value={`${value}%`}>
       <Option>100%</Option>
       <Option>80%</Option>
       <Option>60%</Option>

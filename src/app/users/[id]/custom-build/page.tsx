@@ -5,9 +5,9 @@ import Link from 'next/link';
 
 import { fetchColours, fetchUserById, fetchUsers } from '@/api';
 import { UserSummaryCard, CollaboratorList } from '@/components/User';
-import { Breadcrumbs, Button } from '@/materialui';
+import { Breadcrumbs, Button, Typography } from '@/materialui';
 import {
-  addUserToFlattenedCollection,
+  addUserCountsToFlattenedCollection,
   findLargestCommonCollectionInGroup,
   flattenBlockCollection,
   limitCollectionByUserCounts,
@@ -16,29 +16,40 @@ import CoverageSelect from '@/components/CoverageSelect';
 import { UserSummary, User, BlockPiece, BuildSet } from '@/types';
 import { BuildSetDetails } from '@/components/BuildSet';
 
-const CustomBuild = async ({ params }: { params: { id: string } }) => {
+const CustomBuild = async ({
+  params,
+  searchParams,
+}: {
+  params: { id: string };
+  searchParams: { coverage: string };
+}) => {
   const { id } = params;
-  const user = await fetchUserById(id);
-  const users = await fetchUsers();
-  const colours = await fetchColours();
-  const { username, location, brickCount, collection } = user;
+  const { coverage = '50' } = searchParams;
+  const [user, userSummaries, colours] = await Promise.all([
+    fetchUserById(id),
+    fetchUsers(),
+    fetchColours(),
+  ]);
+  const { username, location, brickCount } = user;
 
-  let flatCollection = flattenBlockCollection(user);
-  const fullUsers = await Promise.all(
-    users.Users.map(async (user: UserSummary) => {
+  const users = await Promise.all(
+    userSummaries.Users.map(async (user: UserSummary) => {
       const fullUser = await fetchUserById(user.id);
       return fullUser;
     })
   );
 
-  fullUsers.forEach((user: User) => {
-    if (user.username !== username) {
-      addUserToFlattenedCollection(flatCollection, user);
+  const minimumUsers = Math.floor((users.length * parseInt(coverage)) / 100);
+
+  let flatCollection = flattenBlockCollection(user);
+  users.forEach((user: User) => {
+    if (user.id !== id) {
+      addUserCountsToFlattenedCollection(flatCollection, user);
     }
   });
 
   const collectionLimitedByUser = limitCollectionByUserCounts(flatCollection, user);
-  const proposedSet = findLargestCommonCollectionInGroup(collectionLimitedByUser, 5);
+  const proposedSet = findLargestCommonCollectionInGroup(collectionLimitedByUser, minimumUsers);
 
   return (
     <>
@@ -51,10 +62,16 @@ const CustomBuild = async ({ params }: { params: { id: string } }) => {
       </Breadcrumbs>
       <div className="flex flex-row">
         <div className="flex flex-col flex-1 px-6">
+          <Typography variant="h3" className="mt-4">
+            Custom build
+          </Typography>
+          <Typography variant="lead" className="mb-4">
+            {`${proposedSet.users.length} users (${coverage}%) are able to build a set containing ${proposedSet.totalBlocks} pieces from your collection`}
+          </Typography>
           <UserSummaryCard user={{ id, username, location, brickCount }} />
           <div className="block lg:hidden">
             <div className="w-48">
-              <CoverageSelect />
+              <CoverageSelect value={coverage} />
             </div>
             <Link href={`/users/${id}/custom-build`}>
               <Button size="sm" color="teal" disabled className="flex items-center gap-3 mt-4">
@@ -71,12 +88,12 @@ const CustomBuild = async ({ params }: { params: { id: string } }) => {
         </div>
         <div className="flex hidden lg:block flex-col flex-1 px-6 mt-4">
           <div className="w-48">
-            <CoverageSelect />
+            <CoverageSelect value={coverage} />
           </div>
           <Link href={`/users/${id}/custom-build`}>
             <Button size="sm" color="teal" disabled className="flex items-center gap-3 mt-4">
               <FontAwesomeIcon icon={faCirclePlus} className="h-5 w-5" strokeWidth={2} />
-              Generate Build
+              Submit Build
             </Button>
           </Link>
           <div className="flex flex-col flex-1 p-6">

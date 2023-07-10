@@ -1,4 +1,5 @@
 import { BlockPiece } from '@/types';
+import { Block } from 'typescript';
 
 const decomposeBlockKey = (blockPieceKey: string) => {
   return blockPieceKey.split('-');
@@ -16,4 +17,6 @@ const buildBlockPiece = (blockPieceKey: string, count: number): BlockPiece => {
   };
 };
 
-export { decomposeBlockKey, buildBlockPiece };
+const totalMissingPiecesReducer = (sum: number, piece: BlockPiece) => sum + piece.quantity;
+
+export { decomposeBlockKey, buildBlockPiece, totalMissingPiecesReducer };

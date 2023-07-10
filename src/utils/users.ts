@@ -2,7 +2,7 @@ import { BlockPiece, User, BuildSet } from '@/types';
 
 export interface UserOwnsAllPiecesResult {
   hasAllPieces: boolean;
-  missingPieces?: BlockPiece[];
+  missingPieces: BlockPiece[];
 }
 
 const userOwnsAllPieces = (user: User, pieces: BlockPiece[]): UserOwnsAllPiecesResult => {

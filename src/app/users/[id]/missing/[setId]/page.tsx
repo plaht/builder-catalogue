@@ -11,9 +11,11 @@ import { Breadcrumbs } from '@/materialui';
 
 const UserMissingBuildSet = async ({ params }: { params: { id: string; setId: string } }) => {
   const { id, setId } = params;
-  const user = await fetchUserById(id);
-  const set = await fetchSetById(setId);
-  const colours = await fetchColours();
+  const [user, set, colours] = await Promise.all([
+    fetchUserById(id),
+    fetchSetById(setId),
+    fetchColours(),
+  ]);
   const { username, location, brickCount } = user;
   const { missingPieces } = canUserBuildSet(user, set);
 

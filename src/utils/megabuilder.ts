@@ -33,7 +33,10 @@ const flattenBlockCollection = (user: User): UserBlockCountLookup => {
   return flattened;
 };
 
-const addUserToFlattenedCollection = (flattenedCollection: UserBlockCountLookup, user: User) => {
+const addUserCountsToFlattenedCollection = (
+  flattenedCollection: UserBlockCountLookup,
+  user: User
+) => {
   const { username, id, collection } = user;
   Object.entries(flattenedCollection).forEach(([coloredPiece, counts]) => {
     const [pieceId, color] = coloredPiece.split('-');
@@ -150,7 +153,7 @@ const findLargestCommonCollectionInGroup = (
 
 export {
   flattenBlockCollection,
-  addUserToFlattenedCollection,
+  addUserCountsToFlattenedCollection,
   limitCollectionByUserCounts,
   findLargestCommonCollectionInGroup,
 };

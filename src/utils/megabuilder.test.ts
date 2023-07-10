@@ -119,7 +119,7 @@ const comparison = {
 };
 
 describe('megabuilder set utils test', () => {
-  it.only('should return limited collection', () => {
+  it('should return limited collection based on certain users counts', () => {
     // deep copy
     const testdata = JSON.parse(JSON.stringify(comparison));
     const lc = limitCollectionByUserCounts(testdata, {
@@ -132,7 +132,7 @@ describe('megabuilder set utils test', () => {
     expect(Math.max(...lc['3029-4'].map((x) => x.count))).toBe(11);
   });
 
-  it.only('should return limited collection', () => {
+  it.only('should find the largest common collection for a given amount of users', () => {
     // deep copy
     const testdata = JSON.parse(JSON.stringify(comparison));
     const lc = limitCollectionByUserCounts(testdata, {

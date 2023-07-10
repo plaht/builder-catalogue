@@ -4,22 +4,25 @@ import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCubes, faDroplet, faEye, faCheck } from '@fortawesome/free-solid-svg-icons';
 
-import { fetchSetById } from '@/api';
-import { BuildSetSummary, User } from '@/types';
+import { BuildSet, User } from '@/types';
 import { Card, CardHeader, CardBody, Typography, Button } from '@/materialui';
 import { BUILDSET_AVATAR_URL } from '@/utils/constants';
-import { canUserBuildSet } from '@/utils/users';
+import { UserOwnsAllPiecesResult } from '@/utils/users';
+import { totalMissingPiecesReducer as reducer } from '@/utils/block';
 
 export interface UserBuildSetEvaluationProps {
   user: User;
-  buildSet: BuildSetSummary;
+  buildSet: BuildSet;
+  evaluation: UserOwnsAllPiecesResult;
 }
 
-const UserBuildSetEvaluation = async ({ user, buildSet }: UserBuildSetEvaluationProps) => {
+const UserBuildSetEvaluation = async ({
+  user,
+  buildSet,
+  evaluation,
+}: UserBuildSetEvaluationProps) => {
   const { id: setId, setNumber, name, totalPieces } = buildSet;
-  const fullSet = await fetchSetById(setId);
-
-  const { hasAllPieces, missingPieces } = canUserBuildSet(user, fullSet);
+  const { hasAllPieces, missingPieces } = evaluation;
 
   return (
     <Card shadow={true} className="max-w-[39rem] px-3 m-2">
@@ -54,9 +57,7 @@ const UserBuildSetEvaluation = async ({ user, buildSet }: UserBuildSetEvaluation
                 {!hasAllPieces && (
                   <Typography className="" variant="h6" color="red">
                     {'missing '}
-                    {missingPieces?.reduce((sum, piece) => {
-                      return sum + piece.quantity;
-                    }, 0)}{' '}
+                    {missingPieces?.reduce(reducer, 0)}{' '}
                     <FontAwesomeIcon icon={faCubes} color="red" />
                   </Typography>
                 )}

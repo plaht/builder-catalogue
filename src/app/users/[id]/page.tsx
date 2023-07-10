@@ -9,8 +9,7 @@ import Link from 'next/link';
 
 const User = async ({ params }: { params: { id: string } }) => {
   const { id } = params;
-  const user = await fetchUserById(id);
-  const colours = await fetchColours();
+  const [user, colours] = await Promise.all([fetchUserById(id), fetchColours()]);
   const { username, location, brickCount, collection } = user;
 
   return (
