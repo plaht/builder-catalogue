@@ -35,5 +35,5 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - [ ] Improve loading experience - Suspense animations / skeletons
 - [ ] Improve Client side rehydration - `swr` for improved clientside fetching
 - [ ] Refactor folder structure
-- [ ] Integartion tests - testing the UI using `playwright.dev`
+- [ ] Integration tests - testing the UI using `playwright.dev`
 - [ ] Color substitution suggestion if user can not complete a set as specified with another unused color
