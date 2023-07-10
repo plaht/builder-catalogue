@@ -12,7 +12,6 @@ import BlockRowList from './BlockRowList';
 import { Tab, TabPanel, Tabs, TabsBody, TabsHeader } from '@material-tailwind/react';
 import { totalMissingPiecesReducer as reducer } from '@/utils/block';
 
-
 const BuildSetDetails = ({
   buildSet,
   missingPieces = [],
