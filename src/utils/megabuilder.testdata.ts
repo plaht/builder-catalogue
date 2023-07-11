@@ -120,21 +120,22 @@ const user = {
   username: 'megabuilder99',
   location: 'CPH',
   brickCount: 21,
-  collection: [{
-    pieceId: '3029',
-    variants: [
-      { color: '4', count: 3 },
-      { color: '1', count: 1 },
-    ]
-  },
-  {
-    pieceId: '5092',
-    variants: [
-      { color: '4', count: 4 },
-      { color: '1', count: 9 },
-    ]
-  },
-]
+  collection: [
+    {
+      pieceId: '3029',
+      variants: [
+        { color: '4', count: 3 },
+        { color: '1', count: 1 },
+      ],
+    },
+    {
+      pieceId: '5092',
+      variants: [
+        { color: '4', count: 4 },
+        { color: '1', count: 9 },
+      ],
+    },
+  ],
 };
 
 const otherUsers = [
@@ -143,55 +144,53 @@ const otherUsers = [
     username: 'waffle_horse',
     location: 'BNE',
     brickCount: 33,
-    collection: [{
-      pieceId: '3029',
-      variants: [
-        { color: '2', count: 9 },
-        { color: '1', count: 1 },
-      ]
-    },
-    {
-      pieceId: '5091',
-      variants: [
-        { color: '4', count: 3 },
-        { color: '12', count: 12 },
-      ]
-    },
-    {
-      pieceId: '9502',
-      variants: [
-        { color: '1', count: 8 },
-      ]
-    },
-  ]
+    collection: [
+      {
+        pieceId: '3029',
+        variants: [
+          { color: '2', count: 9 },
+          { color: '1', count: 1 },
+        ],
+      },
+      {
+        pieceId: '5091',
+        variants: [
+          { color: '4', count: 3 },
+          { color: '12', count: 12 },
+        ],
+      },
+      {
+        pieceId: '9502',
+        variants: [{ color: '1', count: 8 }],
+      },
+    ],
   },
   {
     id: '4005',
     username: 'superkit',
     location: 'AAL',
     brickCount: 16,
-    collection: [{
-      pieceId: '3029',
-      variants: [
-        { color: '4', count: 6 },
-        { color: '1', count: 1 },
-      ]
-    },
-    {
-      pieceId: '5092',
-      variants: [
-        { color: '4', count: 3 },
-        { color: '2', count: 4 },
-      ]
-    },
-    {
-      pieceId: '9014',
-      variants: [
-        { color: '9', count: 2 },
-      ]
-    },
-  ]
-  }
-]
+    collection: [
+      {
+        pieceId: '3029',
+        variants: [
+          { color: '4', count: 6 },
+          { color: '1', count: 1 },
+        ],
+      },
+      {
+        pieceId: '5092',
+        variants: [
+          { color: '4', count: 3 },
+          { color: '2', count: 4 },
+        ],
+      },
+      {
+        pieceId: '9014',
+        variants: [{ color: '9', count: 2 }],
+      },
+    ],
+  },
+];
 
 export { comparisonCounts, user, otherUsers };

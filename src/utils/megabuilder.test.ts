@@ -1,45 +1,52 @@
 import { User } from '@/types';
-import { flattenBlockCollection, addUserCountsToFlattenedCollection, findLargestCommonCollectionInGroup, limitCollectionByUserCounts } from './megabuilder';
+import {
+  flattenBlockCollection,
+  addUserCountsToFlattenedCollection,
+  findLargestCommonCollectionInGroup,
+  limitCollectionByUserCounts,
+} from './megabuilder';
 import { comparisonCounts, user, otherUsers } from './megabuilder.testdata';
 
 describe('megabuilder set utils test', () => {
-
   it('should flatten a users block collection and add user counts to it', () => {
     const flattenedCollection = flattenBlockCollection(user);
-    expect(flattenedCollection).toEqual(
-      {
-        '3029-4': [ { count: 3, username: 'megabuilder99', userId: '41' } ],
-        '3029-1': [ { count: 1, username: 'megabuilder99', userId: '41' } ],
-        '5092-4': [ { count: 4, username: 'megabuilder99', userId: '41' } ],
-        '5092-1': [ { count: 9, username: 'megabuilder99', userId: '41' } ]
-      }
-    );
+    expect(flattenedCollection).toEqual({
+      '3029-4': [{ count: 3, username: 'megabuilder99', userId: '41' }],
+      '3029-1': [{ count: 1, username: 'megabuilder99', userId: '41' }],
+      '5092-4': [{ count: 4, username: 'megabuilder99', userId: '41' }],
+      '5092-1': [{ count: 9, username: 'megabuilder99', userId: '41' }],
+    });
     expect(otherUsers.length).toBe(2);
-    let updatedCollectionWithCounts = addUserCountsToFlattenedCollection(flattenedCollection, otherUsers[0]);
-    updatedCollectionWithCounts = addUserCountsToFlattenedCollection(flattenedCollection, otherUsers[1]);
+    let updatedCollectionWithCounts = addUserCountsToFlattenedCollection(
+      flattenedCollection,
+      otherUsers[0]
+    );
+    updatedCollectionWithCounts = addUserCountsToFlattenedCollection(
+      flattenedCollection,
+      otherUsers[1]
+    );
     expect(updatedCollectionWithCounts).toEqual({
       '3029-4': [
         { count: 0, username: 'waffle_horse', userId: '41' },
         { count: 3, username: 'megabuilder99', userId: '41' },
-        { count: 6, username: 'superkit', userId: '4005' }
+        { count: 6, username: 'superkit', userId: '4005' },
       ],
       '3029-1': [
         { count: 1, username: 'megabuilder99', userId: '41' },
         { count: 1, username: 'waffle_horse', userId: '41' },
-        { count: 1, username: 'superkit', userId: '4005' }
+        { count: 1, username: 'superkit', userId: '4005' },
       ],
       '5092-4': [
         { count: 0, username: 'waffle_horse', userId: '41' },
         { count: 3, username: 'superkit', userId: '4005' },
-        { count: 4, username: 'megabuilder99', userId: '41' }
+        { count: 4, username: 'megabuilder99', userId: '41' },
       ],
       '5092-1': [
         { count: 0, username: 'superkit', userId: '4005' },
         { count: 0, username: 'waffle_horse', userId: '41' },
-        { count: 9, username: 'megabuilder99', userId: '41' }
-      ]
-    }
-    );
+        { count: 9, username: 'megabuilder99', userId: '41' },
+      ],
+    });
   });
 
   it('should return limited collection based on certain users counts', () => {
